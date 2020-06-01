@@ -1,0 +1,22 @@
+{
+  "instructors": [
+    {
+      "id": 1,
+      "avatar_url": "https://thumbnail.imgbin.com/15/10/24/imgbin-kyle-craven-father-family-brazil-video-jailson-mendes-ESRiU8cp5uxptNjR5dcTeSny0_t.jpg",
+      "name": "Pai de Família",
+      "birth": 721872000000,
+      "gender": "M",
+      "services": "Crossfit, Pilates",
+      "created_at": "27/5/2020"
+    },
+    {
+      "id": 2,
+      "avatar_url": "https://pm1.narvii.com/7446/45470f87775cb7decd90d4ee31f838b42b8abed2r1-500-500v2_00.jpg",
+      "name": "Ricardo Milos",
+      "birth": 564019200000,
+      "gender": "M",
+      "services": "Crossfit, Supino",
+      "created_at": "27/5/2020"
+    }
+  ]
+}

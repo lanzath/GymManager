@@ -4,12 +4,10 @@
  */
 const fs = require('fs');
 const data = require('../data.json');
-const { age } = require('./utils')
+const { age, date } = require('./utils');
 const moment = require('moment');
 
-/**
- * Create
- */
+/* Create */
 exports.post = (req, res) => {
   // constructor for form validation by getting the keys of req.body object
   const keys = Object.keys(req.body);
@@ -51,31 +49,84 @@ exports.post = (req, res) => {
   });
 }
 
-/**
- * Show
- */
+/* Show */
 exports.show = (req, res) => {
+  //Get id from params (url)
   const { id } = req.params;
 
+  //Fetch and return the first value that matches the condition from data.json
   const foundInstructor = data.instructors.find(
     instructor => instructor.id == id
   );
 
+  //Send error msg if instructor wasn't found
   if (!foundInstructor) return res.send({Error: "Instructor not found"});
 
+  /*
+  * Spread foundInstructor object into instructor
+  * and update age and services keys to format it properly
+  */
   const instructor = {
     ...foundInstructor,
     age: age(foundInstructor.birth),
     services: foundInstructor.services.split(','),
   };
 
+  //Send the object instructor to render data in page
   return res.render('instructors/show', { instructor });
 }
 
-/**
- * Update
- */
+/* Update */
+exports.edit = (req, res) => {
+  const { id } = req.params;
 
-/**
-* Delete
-*/
+  const foundInstructor = data.instructors.find(
+    instructor => instructor.id == id
+  );
+
+  if(!foundInstructor) return res.send({Error: "Instructor not found"});
+
+  const instructor = {
+    ...foundInstructor,
+    birth: date(foundInstructor.birth)
+  };
+
+  return res.render('instructors/edit', { instructor });
+}
+
+/* Put */
+exports.put = (req, res) => {
+  // Get the instructor id from request body
+  const { id } = req.body;
+
+  // Index variable to know which instructor is being edited
+  let index = 0;
+
+  // Fetch for instructor and assign its position to index variable
+  const foundInstructor = data.instructors.find((instructor, foundIndex) => {
+    if (id == instructor.id) {
+      index = foundIndex
+      return true
+    }
+  });
+
+  // Verify if the instructor exists
+  if (!foundInstructor) return res.send({Error: 'Instructor not found.'});
+
+  // Spread data into instructor object
+  const instructor = {
+    ...foundInstructor,
+    ...req.body,
+    birth: Date.parse(req.body.birth),
+  };
+
+  // Assign data to instructors according to its index
+  data.instructors[index] = instructor;
+
+  // Save the new edited data to file
+  fs.writeFile('data.json', JSON.stringify(data, null, 2), err => {
+    if (err) return res.send({Error: 'Could not save data, try again'})
+
+    return res.redirect(`/instructors/${id}`)
+  });
+}

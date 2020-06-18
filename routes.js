@@ -6,39 +6,27 @@ const express = require('express');
 const routes = express.Router();
 const instructors = require('./src/instructors');
 
-/**
- * Default endpoint, instructor redirect
- */
+
 routes.get('/', (req, res) => {
-    return res.redirect('/instructors');
+    return res.redirect('/instructors')
 });
 
-/**
- * Main Endpoint 
- */
 routes.get('/instructors', (req, res) => {
-    return res.render('instructors/index');
+    return res.render('instructors/index')
 });
 
-/**
- * New instructor endpoint get and post request
- */
 routes.get('/instructors/create', (req, res) => {
-  return res.render('instructors/create');
+  return res.render('instructors/create')
 });
+
+routes.get('/instructors/:id', instructors.show);
+routes.get('/instructors/:id/edit', instructors.edit);
 
 routes.post('/instructors', instructors.post);
+routes.put('/instructors', instructors.put);
 
-/**
- * Show instructor by id endpoint
- */
-routes.get('/instructors/:id', instructors.show);
-
-/**
- * Listing instructor endpoint
- */
 routes.get('/members', (req, res) => {
-    return res.render('members');
+    return res.render('members')
 });
 
 module.exports = routes;

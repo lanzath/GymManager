@@ -24,7 +24,7 @@ header {
     border: 1px solid #333;
     box-sizing: border-box;
     background: white;
-} 
+}
 
 .links {
     text-align: center;
@@ -32,22 +32,22 @@ header {
 
 .links a + a{
     margin-left: 32px;
-}  
+}
 
 .links a {
   text-decoration: none;
-  color: #777; 
+  color: #777;
   position: relative;
 }
 
 .links a.active {
   font-weight: bold;
-  color: var(--color-rocket);  
+  color: var(--color-rocket);
 }
 
 .links a:hover {
     transition: ease 0.2s;
-    color: var(--color-green);    
+    color: var(--color-green);
 }
 
 .links a::after {
@@ -86,7 +86,7 @@ header {
   }
   to {
     opacity: 1;
-  }    
+  }
 }
 
 .card .avatar {
@@ -159,7 +159,7 @@ input::placeholder {
   font-weight: normal;
 }
 
-button[type="submit"] {
+button[type="submit"], a.button {
   padding: 8px 32px;
   background-color: var(--color-rocket);
   color: white;
@@ -168,4 +168,17 @@ button[type="submit"] {
   border-radius: 4px;
   margin-top: 28px;
   width: 100%;
+}
+
+a.button {
+  box-sizing: border-box;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  transition: 750ms ease
+}
+
+a.button:hover {
+  color: black;
+  background: var(--color-green);
 }

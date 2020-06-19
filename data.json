@@ -10,10 +10,10 @@
       "created_at": "27/5/2020"
     },
     {
-      "id": 2,
+      "id": "2",
       "avatar_url": "https://pm1.narvii.com/7446/45470f87775cb7decd90d4ee31f838b42b8abed2r1-500-500v2_00.jpg",
       "name": "Ricardo Milos",
-      "birth": 564019200000,
+      "birth": 185328000000,
       "gender": "M",
       "services": "Crossfit, Supino",
       "created_at": "13/3/2020"
@@ -31,19 +31,10 @@
       "id": "4",
       "avatar_url": "https://pm1.narvii.com/7059/dcddcb2c771b6c56cb79667de947c89d79782199r1-300-450v2_uhq.jpg",
       "name": "Koro-Sensei",
-      "birth": -2516400000000,
+      "birth": -6095606400000,
       "gender": "M",
       "services": "Assassinato, Afogamento, Mágica",
       "created_at": "22/01/2012"
-    },
-    {
-      "id": 5,
-      "avatar_url": "https://i.pinimg.com/originals/b5/63/e3/b563e35bfe58d522d1d9905c83beea04.jpg",
-      "name": "Jotaro Joestar",
-      "birth": -72748800000,
-      "gender": "M",
-      "services": "Boxe, Muay Thai, Kendô",
-      "created_at": "9/6/2020"
     }
   ]
 }

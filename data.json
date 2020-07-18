@@ -1,7 +1,7 @@
 {
   "instructors": [
     {
-      "id": "1",
+      "id": 1,
       "avatar_url": "https://thumbnail.imgbin.com/15/10/24/imgbin-kyle-craven-father-family-brazil-video-jailson-mendes-ESRiU8cp5uxptNjR5dcTeSny0_t.jpg",
       "name": "Pai de Família",
       "birth": 72144000000,
@@ -10,7 +10,7 @@
       "created_at": "27/5/2020"
     },
     {
-      "id": "2",
+      "id": 2,
       "avatar_url": "https://pm1.narvii.com/7446/45470f87775cb7decd90d4ee31f838b42b8abed2r1-500-500v2_00.jpg",
       "name": "Ricardo Milos",
       "birth": 185328000000,
@@ -28,7 +28,7 @@
       "created_at": "05/11/2019"
     },
     {
-      "id": "4",
+      "id": 4,
       "avatar_url": "https://pm1.narvii.com/7059/dcddcb2c771b6c56cb79667de947c89d79782199r1-300-450v2_uhq.jpg",
       "name": "Koro-Sensei",
       "birth": -6095606400000,

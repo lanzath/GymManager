@@ -201,3 +201,28 @@ a.button:hover {
 #form-delete button[type="submit"]:hover {
     opacity: 1;
 }
+
+/* ==== INDEX INSTRUCTORS TABLE ==== */
+.table-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 40px;
+}
+
+.table-container table {
+    border-spacing: 0;
+}
+
+.table-container thead tr th {
+    text-align: left;
+}
+
+td, th {
+    padding: 16px;
+    border-bottom: 1px solid #d9d9d9dd;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}

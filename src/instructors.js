@@ -50,6 +50,12 @@ exports.post = (req, res) => {
     });
 }
 
+/* List */
+exports.list = (req, res) => {
+    // Render index view and send object instructors with data.instructors value
+    return res.render('instructors/index', { instructors: data.instructors });
+}
+
 /* Show */
 exports.show = (req, res) => {
     //Get id from params (url)
@@ -123,6 +129,7 @@ exports.put = (req, res) => {
         ...foundInstructor,
         ...req.body,
         birth: Date.parse(req.body.birth),
+        id: Number(req.body.id),
     };
 
     // Assign data to instructors according to its index

@@ -1,11 +1,7 @@
-/**
- * Using file system for local data saving
- * Moment Js for date validations
- */
+// Using file system for local data saving
 const fs = require('fs');
 const data = require('../data.json');
 const { age, date } = require('../src/utils');
-const moment = require('moment');
 
 /**
  * Returns member create view
@@ -24,29 +20,26 @@ exports.create = (req, res) => {
  * @returns {Redirect} - Redirects to members view
  */
 exports.post = (req, res) => {
-    // constructor for form validation by getting the keys of req.body object
+    // Constructor for form validation by getting the keys of req.body object
     const keys = Object.keys(req.body);
 
-    // check for empty values in form fields
+    // Check for empty values in form fields
     keys.map(key => {
         if (req.body[key] === "") {
             res.send({ Error: "Por favor preencha todos os campos" });
         }
     });
 
-    // destructuring req.body
+    // Destructuring req.body
     let { avatar_url, birth, name, gender } = req.body;
 
-    /**
-     * Validating dates with Moment.JS to pt-br standards
-     * Using an id incrementation to data entries in data.json
-     */
+    // Validating dates with Moment.JS to pt-br standards
+    // Using an id incrementation to data entries in data.json
     birth = Date.parse(birth);
-    const created_at = moment().locale('pt-br').format('l');
     const id = Number(data.members.length + 1);
 
 
-    // pushing data from req.body to members array
+    // Pushing data from req.body to members array
     data.members.push({
         id,
         avatar_url,
@@ -56,7 +49,7 @@ exports.post = (req, res) => {
         created_at
     });
 
-    // save data to data.json
+    // Save data to data.json
     fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
         if (err) return res.send({ Error: "Erro ao salvar os dados" });
 
@@ -82,27 +75,25 @@ exports.list = (req, res) => {
  * @returns {View} - Render a single member view
  */
 exports.show = (req, res) => {
-    //Get id from params (url)
+    // Get id from params (url)
     const { id } = req.params;
 
-    //Fetch and return the first value that matches the condition from data.json
+    // Fetch and return the first value that matches the condition from data.json
     const foundMember = data.members.find(
         member => member.id == id
     );
 
-    //Send error msg if member wasn't found
+    // Send error msg if member wasn't found
     if (!foundMember) return res.send({ Error: "Member not found" });
 
-    /*
-    * Spread foundMember object into member
-    * and update age key to format it properly
-    */
+    // Spread foundMember object into member
+    // and update age key to format it properly
     const member = {
         ...foundMember,
         age: age(foundMember.birth),
     };
 
-    //Send the object member to render data in page
+    // Send the object member to render data in page
     return res.render('members/show', { member });
 }
 
@@ -185,7 +176,7 @@ exports.put = (req, res) => {
 exports.delete = (req, res) => {
     const { id } = req.body;
 
-    // filter that won't be deleted
+    // Filter that won't be deleted
     const filteredMember = data.members.filter(
         member => member.id != id
     );

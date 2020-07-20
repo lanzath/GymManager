@@ -7,7 +7,22 @@ const data = require('../data.json');
 const { age, date } = require('../src/utils');
 const moment = require('moment');
 
-/* Create */
+/**
+ * Returns member create view
+ * @param {Object} req - Body Request
+ * @param {Object} res - Response *
+ * @returns {View}
+ */
+exports.create = (req, res) => {
+    return res.render('members/create');
+}
+
+/**
+ * Store a newly member into data.json
+ * @param {Object} req - Body Request
+ * @param {Object} res - Response
+ * @returns {Redirect} - Redirects to members view
+ */
 exports.post = (req, res) => {
     // constructor for form validation by getting the keys of req.body object
     const keys = Object.keys(req.body);
@@ -50,13 +65,23 @@ exports.post = (req, res) => {
     });
 }
 
-/* List */
+/**
+ * Render a list of members
+ * @param {Object} req - Body Request
+ * @param {Object} res - Response
+ * @returns {View} - Render index view
+ */
 exports.list = (req, res) => {
     // Render index view and send object instructors with data.instructors value
     return res.render('instructors/index', { instructors: data.instructors });
 }
 
-/* Show */
+/**
+ * Show a single member
+ * @param {Object} req - Body Request
+ * @param {Object} res - Response
+ * @returns {View} - Render a single member view
+ */
 exports.show = (req, res) => {
     //Get id from params (url)
     const { id } = req.params;
@@ -83,7 +108,12 @@ exports.show = (req, res) => {
     return res.render('instructors/show', { instructor });
 }
 
-/* Update */
+/**
+ * Render member edit view
+ * @param {Object} req - Body Request
+ * @param {Object} res - Response
+ * @returns {View} - Render member edit view
+ */
 exports.edit = (req, res) => {
     const { id } = req.params;
 
@@ -105,7 +135,12 @@ exports.edit = (req, res) => {
     return res.render('instructors/edit', { instructor });
 }
 
-/* Put */
+/**
+ * Update a member with put http verb
+ * @param {Object} req - Body Request
+ * @param {Object} res - Response
+ * @returns {View} - Show de edited member view
+ */
 exports.put = (req, res) => {
     // Get the instructor id from request body
     const { id } = req.body;
@@ -143,7 +178,12 @@ exports.put = (req, res) => {
     });
 }
 
-/* Delete */
+/**
+ * Delete a single member from storage data.json
+ * @param {Object} req - Body Request
+ * @param {Object} res - Response
+ * @returns {Redirect} - Redirect to members view
+ */
 exports.delete = (req, res) => {
     const { id } = req.body;
 

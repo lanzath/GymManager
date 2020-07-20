@@ -8,7 +8,7 @@ const moment = require('moment');
 /**
  * Returns member create view
  * @param {Object} req - Body Request
- * @param {Object} res - Response *
+ * @param {Object} res - Response
  * @returns {View}
  */
 exports.create = (req, res) => {

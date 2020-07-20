@@ -1,7 +1,5 @@
-/**
- * Using express Router for Browsing endpoints
- * Import external modules
- */
+// Using express Router for Browsing endpoints
+// Import external modules
 const express = require('express');
 const routes = express.Router();
 const instructors = require('./controllers/instructors');

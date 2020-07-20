@@ -38,7 +38,6 @@ exports.post = (req, res) => {
     birth = Date.parse(birth);
     const id = Number(data.members.length + 1);
 
-
     // Pushing data from req.body to members array
     data.members.push({
         id,

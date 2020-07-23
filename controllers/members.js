@@ -1,7 +1,17 @@
 // Using file system for local data saving
 const fs = require('fs');
 const data = require('../data.json');
-const { age, date } = require('../src/utils');
+const { date } = require('../src/utils');
+
+/**
+ * Render a list of members
+ * @param {Object} req - Body Request
+ * @param {Object} res - Response
+ * @returns {View} - Render index view
+ */
+exports.list = (req, res) => {
+    return res.render('members/index', { members: data.members });
+}
 
 /**
  * Returns member create view
@@ -51,16 +61,6 @@ exports.post = (req, res) => {
 }
 
 /**
- * Render a list of members
- * @param {Object} req - Body Request
- * @param {Object} res - Response
- * @returns {View} - Render index view
- */
-exports.list = (req, res) => {
-    return res.render('members/index', { members: data.members });
-}
-
-/**
  * Show a single member
  * @param {Object} req - Body Request
  * @param {Object} res - Response
@@ -77,7 +77,7 @@ exports.show = (req, res) => {
 
     const member = {
         ...foundMember,
-        age: age(foundMember.birth),
+        birth: date(foundMember.birth).birthDay,
     };
 
     return res.render('members/show', { member });
@@ -100,7 +100,7 @@ exports.edit = (req, res) => {
 
     const member = {
         ...foundMember,
-        birth: date(foundMember.birth)
+        birth: date(foundMember.birth).iso
     };
 
     return res.render('members/edit', { member });

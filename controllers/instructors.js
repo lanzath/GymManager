@@ -6,6 +6,17 @@ const { age, date } = require('../src/utils');
 const moment = require('moment');
 
 /**
+ * Render a list of members
+ * @param {Object} req - Body Request
+ * @param {Object} res - Response
+ * @returns {View} - Render index view
+ */
+exports.list = (req, res) => {
+    // Render index view and send object instructors with data.instructors value
+    return res.render('instructors/index', { instructors: data.instructors });
+}
+
+/**
  * Returns member create view
  * @param {Object} req - Body Request
  * @param {Object} res - Response
@@ -61,17 +72,6 @@ exports.post = (req, res) => {
 }
 
 /**
- * Render a list of members
- * @param {Object} req - Body Request
- * @param {Object} res - Response
- * @returns {View} - Render index view
- */
-exports.list = (req, res) => {
-    // Render index view and send object instructors with data.instructors value
-    return res.render('instructors/index', { instructors: data.instructors });
-}
-
-/**
  * Show a single member
  * @param {Object} req - Body Request
  * @param {Object} res - Response
@@ -121,7 +121,7 @@ exports.edit = (req, res) => {
     // Spread the found instructor into an object
     const instructor = {
         ...foundInstructor,
-        birth: date(foundInstructor.birth)
+        birth: date(foundInstructor.birth).iso
     };
 
     // Send the instructor object to /edit route

@@ -2,9 +2,9 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/-Javascript-yellow" alt="Javascript">
-  <img src="https://img.shields.io/badge/-NodeJS-brightgreen" alt"Node.JS">
-  <img src="https://img.shields.io/badge/-CSS3-blue" alt"CSS3">
-  <img src="https://img.shields.io/badge/-Nunjucks-green" alt"Nunjucks">
+  <img src="https://img.shields.io/badge/-NodeJS-brightgreen" alt="Node.JS">
+  <img src="https://img.shields.io/badge/-CSS3-blue" alt="CSS3">
+  <img src="https://img.shields.io/badge/-Nunjucks-green" alt="Nunjucks">
 </p>
 
 #### Projeto desenvolvido durante a terceira fase do curso de desenvolvimento fullstack Launchbase da [Rocketseat](https://rocketseat.com.br/)

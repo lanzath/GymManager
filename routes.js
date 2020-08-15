@@ -9,7 +9,7 @@ routes.get('/', (req, res) => {
     return res.redirect('/instructors')
 });
 
-/*==== Instructors endpoints ====*/
+/*==== Instructors routes and endpoints ====*/
 routes.get('/instructors', instructors.list);
 routes.get('/instructors/create', instructors.create);
 routes.get('/instructors/:id', instructors.show);
@@ -18,7 +18,7 @@ routes.post('/instructors', instructors.post);
 routes.put('/instructors', instructors.put);
 routes.delete('/instructors', instructors.delete);
 
-/*==== Members endpoints ====*/
+/*==== Members routes and endpoints ====*/
 routes.get('/members', members.list);
 routes.get('/members/create', members.create);
 routes.get('/members/:id', members.show);

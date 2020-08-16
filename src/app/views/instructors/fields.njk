@@ -41,7 +41,7 @@
         type="radio"
         name="gender"
         value="M"
-        {% 'checked' if instructor.gender === 'M' %}
+        {% if instructor.gender == 'M' %} checked {% endif %}
       >Masculino
     </span>
     <span>
@@ -49,7 +49,7 @@
         type="radio"
         name="gender"
         value="F"
-        {% 'checked' if instructor.gender === 'F' %}
+        {% if instructor.gender == 'F' %} checked {% endif %}
       >Feminino
     </span>
   </div>

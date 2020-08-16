@@ -1,5 +1,5 @@
 module.exports = {
-  age: function age(timestamp) {
+  age(timestamp) {
     // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Date/
 
     // Gera a data de hoje num object date
@@ -24,7 +24,7 @@ module.exports = {
 
     return age;
   },
-  date: timestamp => {
+  date(timestamp) {
     // Date gera a data de agora num Obect Date
     // Year transforma o timestamp no modelo UTC de ano (yyyy)
     // Month transforma o timestamp no modelo UTC de mês (mm)
@@ -42,11 +42,11 @@ module.exports = {
 
     // Retorna uma data formatada no modelo UTC(yyyy-mm-dd) utilizando o template string
     return {
-        day,
-        month,
-        year,
-        iso: `${year}-${month}-${day}`,
-        birthDay: `${day}/${month}`,
+      day,
+      month,
+      year,
+      iso: `${year}-${month}-${day}`,
+      birthDay: `${day}/${month}`,
     }
   }
 }

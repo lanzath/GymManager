@@ -1,0 +1,34 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <div class="card">
+    <section class="avatar" style="background: url({{instructor.avatar_url}}) no-repeat center center/ cover">
+    </section>
+    <section class="details">
+      <form method="POST" action="/instructors?_method=PUT">
+        <h3>Editar Instrutor</h3>
+        {% include 'instructors/fields.njk' %}
+        {# Hidden input to get the instructor id #}
+        <input type="hidden" name="id" value={{instructor.id}}>
+      </form>
+      <form id="form-delete" action="/instructors?_method=DELETE" method="post">
+        {# Hidden input to get the instructor id #}
+        <input type="hidden" name="id" value={{instructor.id}}>
+
+        <button class="btn" type="submit">Deletar</button>
+      </form>
+    </section>
+  </div>
+
+  {# Delete confirm script #}
+  <script>
+    const formDelete = document.querySelector('#form-delete');
+    formDelete.addEventListener('submit', event => {
+      const deleteConfirm = confirm('Deseja deletar?');
+      if (!deleteConfirm) {
+        // Prevent form submition (delete)
+        event.preventDefault();
+      }
+    });
+  </script>
+{% endblock %}

@@ -1,6 +1,7 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
 const routes = require('./routes');
+
 // Using method override for PUT and DELETE HTTP verbs
 const methodOverride = require('method-override');
 
@@ -16,10 +17,10 @@ server.use(routes);
 server.set('view engine', 'njk');
 
 /* Nunjucks file config */
-nunjucks.configure('views', {
-    express: server,
-    autoescape: false,
-    noCache: true
+nunjucks.configure('src/app/views', {
+  express: server,
+  autoescape: false,
+  noCache: true
 });
 
 /* Server running on port 5000 */

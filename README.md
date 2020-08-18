@@ -3,6 +3,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/-Javascript-yellow" alt="Javascript">
   <img src="https://img.shields.io/badge/-NodeJS-brightgreen" alt="Node.JS">
+  <img src="https://img.shields.io/badge/-PostgreSQL-blue" alt="PostgreSQL">
   <img src="https://img.shields.io/badge/-CSS3-blue" alt="CSS3">
   <img src="https://img.shields.io/badge/-Nunjucks-green" alt="Nunjucks">
 </p>
@@ -16,6 +17,7 @@
 
 ##### back-end:
 - node.js
+- postgresql
 - express
 
 ##### front-end:

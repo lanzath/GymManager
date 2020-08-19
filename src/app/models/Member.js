@@ -7,7 +7,7 @@ module.exports = {
    * @param {function} callback function to handle view rendering
    */
   all(callback) {
-    db.query(`SELECT * FROM members`, (err, results) => {
+    db.query(`SELECT * FROM members ORDER BY name ASC`, (err, results) => {
       if (err) throw `Não foi possível conectar ao banco de dados :( ${err}`
 
       callback(results.rows);

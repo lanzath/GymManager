@@ -7,10 +7,13 @@ module.exports = {
    * @param {function} callback function to handle view rendering
    */
   all(callback) {
-    db.query(`SELECT * FROM instructors`, (err, results) => {
-      if (err) throw `Não foi possível conectar ao banco de dados :( ${err}`
+    db.query(`
+      SELECT *
+      FROM instructors
+      ORDER BY name ASC`, (err, results) => {
+        if (err) throw `Não foi possível conectar ao banco de dados :( ${err}`
 
-      callback(results.rows);
+        callback(results.rows);
     });
   },
 

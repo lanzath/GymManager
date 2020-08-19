@@ -1,4 +1,6 @@
+const Member = require('../models/Member');
 const { age, date } = require('../lib/utils');
+
 
 module.exports = {
   /**
@@ -8,8 +10,7 @@ module.exports = {
    * @returns Render index view
    */
   index(req, res) {
-    // Render index view and send object members with data.members value
-    return res.render('members/index');
+    Member.all(members => res.render('members/index', {members}));
   },
 
   /**
@@ -23,7 +24,7 @@ module.exports = {
   },
 
   /**
-   * Store a newly member into data.json
+   * Stores a newly member into database
    * @param {Request} req - Body Request
    * @param {Response} res - Response
    * @returns Redirects to members view
@@ -39,17 +40,23 @@ module.exports = {
       }
     });
 
-    return
+    Member.create(req.body, member => res.redirect(`/members/${member.id}`));
   },
 
   /**
-   * Show a single member
+   * Show an member by its id
    * @param {Request} req - Body Request
    * @param {Response} res - Response
    * @returns Render a single member view
    */
   show(req, res) {
-    return
+    Member.find(req.params.id, member => {
+      if (!member) return res.send({Erro: 'Instrutor não encontrado :('})
+
+      member.birth = date(member.birth).birthDay;
+
+      return res.render('members/show', { member });
+    });
   },
 
   /**
@@ -59,7 +66,13 @@ module.exports = {
    * @returns Render member edit view
    */
   edit(req, res) {
-    return
+    Member.find(req.params.id, member => {
+      if (!member) return res.send({Erro: 'Instrutor não encontrado :('})
+
+      member.birth = date(member.birth).iso;
+
+      return res.render('members/edit', { member });
+    });
   },
 
   /**
@@ -79,16 +92,16 @@ module.exports = {
       }
     });
 
-    return
+    Member.update(req.body, member => res.redirect(`members/${req.body.id}`))
   },
 
   /**
-   * Delete a single member from storage data.json
+   * Delete a single member from database
    * @param {Request} req - Body Request
    * @param {Response} res - Response
    * @returns Redirect to member view
    */
   delete(req, res) {
-    return
+    Member.delete(req.body.id, () => res.redirect('members/index'));
   }
 }

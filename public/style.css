@@ -159,6 +159,14 @@ input::placeholder {
   font-weight: normal;
 }
 
+select {
+  width: 100%;
+  outline: none;
+  color: #555;
+  font-weight: bold;
+  font-size: 18px;
+}
+
 button[type="submit"], a.button {
   padding: 8px 32px;
   background-color: var(--color-primary);

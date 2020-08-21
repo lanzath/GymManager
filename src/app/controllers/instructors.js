@@ -10,7 +10,13 @@ module.exports = {
    * @returns Render index view
    */
   index(req, res) {
-    Instructor.all(instructors => res.render('instructors/index', {instructors}));
+    const { filter } = req.query;
+
+    if (filter) {
+      Instructor.findBy(filter, instructors => res.render('instructors/index', {instructors}));
+    } else {
+      Instructor.all(instructors => res.render('instructors/index', {instructors}));
+    }
   },
 
   /**

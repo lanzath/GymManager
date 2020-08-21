@@ -20,7 +20,9 @@ module.exports = {
    * @returns Render create new member view
    */
   create(req, res) {
-    return res.render('members/create');
+    Member.instructorSelectOptions(options => {
+      return res.render('members/create', { instructorOptions: options })
+    });
   },
 
   /**
@@ -55,7 +57,9 @@ module.exports = {
 
       member.birth = date(member.birth).birthDay;
 
-      return res.render('members/show', { member });
+      Member.instructorSelectOptions(options => {
+        return res.render('members/show', { member, instructorOptions: options })
+      });
     });
   },
 
@@ -71,7 +75,9 @@ module.exports = {
 
       member.birth = date(member.birth).iso;
 
-      return res.render('members/edit', { member });
+      Member.instructorSelectOptions(options => {
+        return res.render('members/edit', { member, instructorOptions: options })
+      });
     });
   },
 

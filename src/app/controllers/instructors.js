@@ -13,7 +13,7 @@ module.exports = {
     const { filter } = req.query;
 
     if (filter) {
-      Instructor.findBy(filter, instructors => res.render('instructors/index', {instructors}));
+      Instructor.findBy(filter, instructors => res.render('instructors/index', {instructors, filter}));
     } else {
       Instructor.all(instructors => res.render('instructors/index', {instructors}));
     }

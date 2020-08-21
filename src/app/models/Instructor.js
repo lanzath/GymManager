@@ -83,6 +83,7 @@ module.exports = {
       FROM instructors
       LEFT JOIN members ON (members.instructor_id = instructors.id)
       WHERE instructors.name ILIKE '%${filter}%'
+      OR instructors.services ILIKE '%${filter}%'
       GROUP BY instructors.id
       ORDER BY total_students DESC`, (err, results) => {
         if (err) throw `Não foi possível conectar ao banco de dados :( ${err}`

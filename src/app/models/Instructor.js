@@ -71,6 +71,27 @@ module.exports = {
   },
 
   /**
+   * Filter an instructor
+   * @param {string} filter from request query
+   * @param {function} callback function to handle view rendering
+   */
+  findBy(filter, callback) {
+    // ILIKE used for non case-sensitive match
+    // % will bring anything before or after matched filter
+    db.query(`
+      SELECT instructors.*, count(members) AS total_students
+      FROM instructors
+      LEFT JOIN members ON (members.instructor_id = instructors.id)
+      WHERE instructors.name ILIKE '%${filter}%'
+      GROUP BY instructors.id
+      ORDER BY total_students DESC`, (err, results) => {
+        if (err) throw `Não foi possível conectar ao banco de dados :( ${err}`
+
+        callback(results.rows);
+    });
+  },
+
+  /**
    * Update instructor data and save it in database
    * @param {Request} data req.body data
    * @param {function} callback function to handle redirect

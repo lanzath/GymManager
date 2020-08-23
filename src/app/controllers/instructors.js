@@ -10,13 +10,25 @@ module.exports = {
    * @returns Render index view
    */
   index(req, res) {
-    const { filter } = req.query;
+    let { filter, page, limit } = req.query;
 
-    if (filter) {
-      Instructor.findBy(filter, instructors => res.render('instructors/index', {instructors, filter}));
-    } else {
-      Instructor.all(instructors => res.render('instructors/index', {instructors}));
-    }
+    page = page || 1;
+
+    limit = limit || 5;
+
+    let offset = limit * (page - 1);
+
+    const params = {
+      filter,
+      page,
+      limit,
+      offset,
+      callback(instructors) {
+        return res.render('instructors/index', { instructors, filter })
+      }
+    };
+
+    Instructor.paginate(params);
   },
 
   /**

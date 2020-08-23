@@ -138,7 +138,7 @@ module.exports = {
   },
 
   /**
-   * Paginates instructor by 2
+   * Paginates instructor by 5
    * @param {object} params params from filter and callback function
    */
   paginate(params) {

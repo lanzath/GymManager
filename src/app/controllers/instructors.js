@@ -4,7 +4,7 @@ const { age, date } = require('../lib/utils');
 
 module.exports = {
   /**
-   * Render a list of instructors
+   * Render a list of instructors paginated by 5
    * @param {Request} req - Body Request
    * @param {Response} res - Response
    * @returns Render index view

@@ -36,7 +36,7 @@ function paginate(selectedPage, totalPages) {
       oldPage = currentPage;
     }
   }
-  return pages
+  return pages;
 }
 
 const pagination = document.querySelector('.pagination');
@@ -49,9 +49,9 @@ let elements = '';
 
 for (let page of pages) {
   if (String(page).includes('...')) {
-    elements += `<span>${page}</span>`
+    elements += `<span>${page}</span>`;
   } else {
-    elements += `<a href="?page=${page}">${page}</a>`
+    elements += `<a href="?page=${page}">${page}</a>`;
   }
 }
 

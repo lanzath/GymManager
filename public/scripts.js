@@ -11,31 +11,48 @@ for (item of menuItems) {
 
 // Paginate
 // [1, ..., 13, 14, 15, 16, 17, ..., 20]
-let totalPages = 20,
-    selectedPage = 15,
-    pages = [],
-    oldPage;
+function paginate(selectedPage, totalPages) {
+  let pages = [],
+      oldPage;
 
-// push to pages array numbers as example array (line 13)
-for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
-  const firstAndLastPage = currentPage == 1 || currentPage == totalPages;
-  const pagesAfterSelectedPage = currentPage <= selectedPage + 2;
-  const pagesBeforeSelectedPage = currentPage >= selectedPage - 2;
+  // push to pages array numbers as example array (line 13)
+  for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
+    const firstAndLastPage = currentPage == 1 || currentPage == totalPages;
+    const pagesAfterSelectedPage = currentPage <= selectedPage + 2;
+    const pagesBeforeSelectedPage = currentPage >= selectedPage - 2;
 
-  if (firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage) {
+    if (firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage) {
 
-    if (oldPage && currentPage - oldPage > 2) {
-      pages.push('...');
+      if (oldPage && currentPage - oldPage > 2) {
+        pages.push('...');
+      }
+
+      if (oldPage && currentPage - oldPage == 2) {
+        pages.push(oldPage + 1);
+      }
+
+      pages.push(currentPage);
+
+      oldPage = currentPage;
     }
+  }
+  return pages
+}
 
-    if (oldPage && currentPage - oldPage == 2) {
-      pages.push(oldPage + 1);
-    }
+const pagination = document.querySelector('.pagination');
+// + operator will transform string number into a number data
+const page = +pagination.dataset.page;
+const total = +pagination.dataset.total;
+const pages = paginate(page, total);
 
-    pages.push(currentPage);
+let elements = '';
 
-    oldPage = currentPage;
+for (let page of pages) {
+  if (String(page).includes('...')) {
+    elements += `<span>${page}</span>`
+  } else {
+    elements += `<a href="?page=${page}">${page}</a>`
   }
 }
 
-console.log(pages);
+pagination.innerHTML = elements;

@@ -1,10 +1,10 @@
 const Member = require('../models/Member');
-const { age, date } = require('../lib/utils');
+const { date } = require('../lib/utils');
 
 
 module.exports = {
   /**
-   * Render a list of members
+   * Render a list of members paginated by 5
    * @param {Request} req - Body Request
    * @param {Response} res - Response
    * @returns Render index view
@@ -24,9 +24,18 @@ module.exports = {
       limit,
       offset,
       callback(members) {
-        const pagination = {
-          total: Math.ceil(members[0].total / limit),
-          page,
+        let pagination = '';
+
+        if (members.length == 0) {
+          pagination = {
+            total: 1,
+            page
+          }
+        } else {
+          pagination = {
+            total: Math.ceil(members[0].total / limit),
+            page,
+          }
         }
         return res.render('members/index', { members, pagination, filter })
       }

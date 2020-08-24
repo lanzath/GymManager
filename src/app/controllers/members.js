@@ -10,7 +10,29 @@ module.exports = {
    * @returns Render index view
    */
   index(req, res) {
-    Member.all(members => res.render('members/index', {members}));
+    let { filter, page, limit } = req.query;
+
+    page = page || 1;
+
+    limit = limit || 5;
+
+    let offset = limit * (page - 1);
+
+    const params = {
+      filter,
+      page,
+      limit,
+      offset,
+      callback(members) {
+        const pagination = {
+          total: Math.ceil(members[0].total / limit),
+          page,
+        }
+        return res.render('members/index', { members, pagination, filter })
+      }
+    };
+
+    Member.paginate(params);
   },
 
   /**
